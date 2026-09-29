@@ -25,4 +25,4 @@ enough))](././stl/containers/README.md)
 
 ## Contribution
 
-> No. This is my space. Although, feedback is welcomed.
+No. This is my space. Although, feedback is welcomed.

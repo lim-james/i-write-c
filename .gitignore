@@ -1,0 +1,26 @@
+# Build outputs from the Makefile
+/build/
+/asm/
+
+# Stray compiler/linker output, e.g. from compiling by hand
+*.o
+*.a
+*.so
+*.out
+*.d
+
+# Core dumps and Valgrind leftovers
+core
+core.*
+vgcore.*
+
+# clangd index, and its compile database (generated, full of absolute paths)
+.cache/
+compile_commands.json
+
+# Editors and OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store

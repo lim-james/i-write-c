@@ -13,7 +13,8 @@ be good to have an understanding of C concepts and perhaps even syscalls too.
 > Keeping this small to not have too big of a backlog.
 > Details on what I hope to achieve will be in a respective readme file
 
-- Containers (vector, unordered_map, deque? (am i brave enough))
+- [Containers (vector, unordered_map, deque? (am i brave
+enough))](././stl/containers/README.md)
 - Memory Management (I read somewhere about RAII alternatives w/ goto)
 - Syscalls (mmap, open, ftruncate, fstat, ...)
 

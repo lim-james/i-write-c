@@ -20,3 +20,6 @@ alignment then? the answer seems to default to `alignas(max_align_t)`
 - i need to include `stdbool.h` for `bool`
 - i'm loving the build times
 - `free(NULL)` is fine
+- i wanted a nice api for arr[index] so i tried shadow data technique
+- `realloc` doesn't require you to malloc new region and free old region
+- seems to be a practice to do `sizeof(*ptr)` rather than `sizeof(type)`

@@ -16,3 +16,11 @@ something like `#define _POSIX_C_SOURCE 200809L`
 - `perror` is a thing
 - `man` pages are seriously so goated
 - `AF_UNIX` is for local host, `AF_INET` is for IP protocols
+- `nc -u -l` netcat udp listen
+- `tcpdump -i any udp port [PORT] -x` view packets on the wire at port for udp
+- `ethtool -S eth0` network card counters
+- `nstat -az` kernel's UDP counters
+- `taskset -cp N <PID>` Pin PID to core
+- `ps -o pid,psr,comm -p <PID>` show which core proc on
+- `/proc/interrupts`: showed every card's interrupts landing on core 0
+

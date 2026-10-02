@@ -12,4 +12,7 @@ else files will be created with garbage permissions.
 - apparently you can expose different portions of the posix API by doing
 something like `#define _POSIX_C_SOURCE 200809L`
 - `strtol` middle argument accepts `NULL`
-
+- `inet_pton` is the more modern and safe approach
+- `perror` is a thing
+- `man` pages are seriously so goated
+- `AF_UNIX` is for local host, `AF_INET` is for IP protocols

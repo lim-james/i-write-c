@@ -23,4 +23,20 @@ something like `#define _POSIX_C_SOURCE 200809L`
 - `taskset -cp N <PID>` Pin PID to core
 - `ps -o pid,psr,comm -p <PID>` show which core proc on
 - `/proc/interrupts`: showed every card's interrupts landing on core 0
-
+- `recvmsg` takes `msghdr` that allows for multiple `iovec` (io vector), that
+allows for scattered copy - allows separation of custom header & body at kernel
+level. some pretty useful diagrms from Claude
+```
+// without scattered copy at kernel level
+kernel memory ──copy #1 (recvmsg)──▶ staging[1472]
+                                         │
+                       copy #2 (your memcpy calls)
+                                         ├──▶ hdr       (20 bytes)
+                                         └──▶ ring_slot (the body)
+```
+```
+// with scattered copy at kernel level
+kernel memory ──copy #1 (recvmsg)──┬──▶ hdr       (20 bytes)
+                                   └──▶ ring_slot (the body)
+```
+- 

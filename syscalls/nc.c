@@ -1,4 +1,4 @@
-#define _POSIX_C_SOURCE 200809L
+#define _GNU_SOURCE 200809L
 
 #include <stdio.h>
 #include <string.h>
@@ -6,6 +6,7 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <time.h>
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netinet/ip.h>
@@ -47,7 +48,20 @@ void start_server(uint16_t port) {
 
     uint64_t last_refresh = now_ns();
 
+    struct iovec msg_iovec = {
+        .iov_base = &counter_n,
+        .iov_len  = sizeof counter_n,
+    };
+
+    struct msghdr msg_header = {
+        .msg_name    = &client_addr,
+        .msg_namelen = addrlen,
+        .msg_iov     = &msg_iovec,
+        .msg_iovlen  = 1,
+    };
+
     for (;;) {
+        /*
         ssize_t buffer_read = recvfrom(
             socket_fd,
             &counter_n, 
@@ -56,8 +70,15 @@ void start_server(uint16_t port) {
             (struct sockaddr*)&client_addr,
             &addrlen
         );
+        */
 
-        if (buffer_read == -1) handle_error("read");
+        ssize_t bytes_read  = recvmsg(
+            /* sockfd  = */ socket_fd,
+            /* msghdr  = */ &msg_header,
+            /* timeout = */ 0
+        );
+
+        if (bytes_read == -1) handle_error("read");
         counter = ntohl(counter_n);
         if (counter != expected) dropped += counter - expected;
         expected = counter + 1;
